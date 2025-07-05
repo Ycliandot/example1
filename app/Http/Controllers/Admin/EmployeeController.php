@@ -7,6 +7,7 @@ use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class EmployeeController extends Controller
 {
@@ -42,9 +43,9 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        $page = \request('page') ?? '';
+        $prevUrl = URL::previous();
 
-        return view('admin.employees.show', compact('employee', 'page'));
+        return view('admin.employees.show', compact('employee', 'prevUrl'));
     }
 
 

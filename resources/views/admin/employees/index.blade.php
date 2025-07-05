@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $employee->id }}</td>
                 <td>
-                    <a href="{{ route('admin.employees.show', [$employee->id, 'page' => $employees->currentPage()]) }}">{{ $employee->email }}</a>
+                    <a href="{{ route('admin.employees.show', $employee->id) }}">{{ $employee->email }}</a>
                 </td>
                 <td>{{ $employee->first_name}}</td>
                 <td>{{ $employee->last_name}}</td>

@@ -21,5 +21,5 @@
             <td>{{ $employee->photo }}</td>
         </tr>
     </table>
-    <a class="btn btn-dark" href="{{ route('admin.employees.index', ['page' => $page]) }}">Back</a>
+    <a class="btn btn-dark" href="{{ $prevUrl }}">Back</a>
 @endsection
