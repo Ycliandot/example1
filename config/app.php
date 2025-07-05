@@ -232,4 +232,7 @@ return [
 
     ],
 
+    'pagination' => [
+        'employeesPerPage' => 10,
+    ],
 ];
