@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Employee\StoreEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
+use App\Models\Employee;
+use Illuminate\Http\Request;
+
+class EmployeeController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     */
+    public function index()
+    {
+        $employees = Employee::paginate(config('app.admin.pagination.employeesPerPage'));
+
+        return view('admin.employees.index', compact('employees'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     */
+    public function create()
+    {
+        return view('admin.employees.create');
+    }
+
+
+    public function store(StoreEmployeeRequest $request)
+    {
+        $data = $request->validated();
+        Employee::create($data);
+
+        return redirect()->route('admin.employees.index');
+    }
+
+
+    public function show(Employee $employee)
+    {
+        $page = \request('page') ?? '';
+
+        return view('admin.employees.show', compact('employee', 'page'));
+    }
+
+
+    public function edit(Employee $employee)
+    {
+        return view('admin.employees.edit', compact('employee', $employee));
+    }
+
+
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    {
+        $data = $request->validated();
+        $employee->update($data);
+
+        return redirect()->route('admin.employees.index');
+    }
+
+
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+
+        return redirect()->back();
+    }
+}
