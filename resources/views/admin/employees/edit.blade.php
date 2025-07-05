@@ -35,7 +35,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ route('admin.employees.index') }}" class="btn btn-primary">Back</a>
+            <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>
         </form>
     </div
 @endsection

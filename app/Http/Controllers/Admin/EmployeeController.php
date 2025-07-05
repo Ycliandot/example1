@@ -51,7 +51,9 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        return view('admin.employees.edit', compact('employee', $employee));
+        $prevUrl = URL::previous();
+
+        return view('admin.employees.edit', compact('employee', $employee, 'prevUrl'));
     }
 
 
