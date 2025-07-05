@@ -16,7 +16,7 @@
     </head>
     <body>
         <div class="container">
-            <h4>Dashboard</h4>
+            <div class="row bg-dark text-lg-center text-bg-success"><h4>Dashboard</h4></div>
             @yield('content')
         </div>
     </body>

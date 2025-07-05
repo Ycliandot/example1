@@ -5,7 +5,7 @@
     <div class="mb-2">
         <a href="{{ route('admin.employees.create') }}" class="btn btn-primary">Add Employee</a>
     </div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
