@@ -17,6 +17,20 @@
     <body>
         <div class="container">
             <div class="row bg-dark text-lg-center text-bg-success"><h4>Dashboard</h4></div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.employees.index') }}">Employees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.company.index') }}">Companies</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
             @yield('content')
         </div>
     </body>

@@ -25,4 +25,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
    Route::get('/employees/{employee}', 'EmployeeController@show')->name('admin.employees.show');
    Route::patch('/employees/{employee}', 'EmployeeController@update')->name('admin.employees.update');
    Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('admin.employees.destroy');
+
+   Route::group(['namespace' => 'Company'], function () {
+       Route::get('/companies', 'IndexController')->name('admin.company.index');
+       Route::get('/companies/create', 'CreateController')->name('admin.company.create');
+       Route::post('/companies', 'StoreController')->name('admin.company.store');
+//       Route::post('/companies/{company}', 'ShowController')->name('admin.company.show');
+       Route::get('/companies/{company}/edit', 'EditController')->name('admin.company.edit');
+       Route::patch('/companies/{company}', 'UpdateController')->name('admin.company.update');
+       Route::delete('/companies/{company}', 'DestroyController')->name('admin.company.destroy');
+   });
 });
