@@ -28,6 +28,7 @@ class UpdateEmployeeRequest extends FormRequest
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'photo' => 'image|mimes:jpeg,png,jpg|max:1024',
+            'delete_photo' => 'nullable'
         ];
     }
 }

@@ -2,13 +2,23 @@
 
 @section('content')
     <h1>Edit employee</h1>
-    <div class="row w-25 h-25">
-        <img src="{{ asset('storage/' . $employee->photo) }}" alt="no photo">
-    </div>
     <div class="row">
         <form action="{{ route('admin.employees.update', $employee->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('patch')
+            @if(Storage::disk('public')->exists($employee->photo))
+                <div class="container">
+                    <div class="row w-25 h-25 mb-4">
+                        <img src="{{ asset('storage/' . $employee->photo) }}" alt="photo">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <input type="checkbox" class="btn-check" id="delete_photo" name="delete_photo" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="delete_photo">Delete photo</label>
+                    </div>
+                </div>
+            @else
+                <div class="row">Empty employee photo</div>
+            @endif
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{ $employee->email }}">
@@ -37,8 +47,11 @@
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>
+            </div>
         </form>
     </div
 @endsection

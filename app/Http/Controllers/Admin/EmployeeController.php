@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
+use http\Env\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -67,11 +68,13 @@ class EmployeeController extends Controller
         $data = $request->validated();
 
         if (isset($data['photo'])) {
-            if (Storage::disk('public')->exists($employee->photo)) {
-                Storage::disk('public')->delete($employee->photo);
-            }
-
+            $this->_deletePhoto($employee->photo);
             $data['photo'] = Storage::disk('public')->put('/images', $data['photo']);
+        }
+
+        if (!empty($request->post('delete_photo'))) {
+            $this->_deletePhoto($employee->photo);
+            $data['photo'] = '';
         }
 
         $employee->update($data);
@@ -85,5 +88,13 @@ class EmployeeController extends Controller
         $employee->delete();
 
         return redirect()->back();
+    }
+
+
+    private function _deletePhoto($photoPath = '')
+    {
+        if (Storage::disk('public')->exists($photoPath)) {
+            Storage::disk('public')->delete($photoPath);
+        }
     }
 }
