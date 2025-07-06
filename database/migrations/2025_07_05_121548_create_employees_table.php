@@ -20,7 +20,11 @@ class CreateEmployeesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('photo')->nullable();
+            $table->unsignedBigInteger('company_id');
             $table->softDeletes();
+
+            $table->index('company_id', 'employee_company_idx');
+            $table->foreign('company_id', 'employee_company_fk')->on('companies')->references('id');
         });
     }
 

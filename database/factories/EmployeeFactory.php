@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployeeFactory extends Factory
@@ -17,6 +18,7 @@ class EmployeeFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
+            'company_id' => Company::get()->random()->id,
         ];
     }
 }

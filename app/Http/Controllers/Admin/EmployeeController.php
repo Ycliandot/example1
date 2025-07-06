@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -27,7 +28,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('admin.employees.create');
+        $companies = Company::all();
+        return view('admin.employees.create', compact('companies'));
     }
 
 
@@ -56,8 +58,9 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $prevUrl = URL::previous();
+        $companies = Company::all();
 
-        return view('admin.employees.edit', compact('employee', $employee, 'prevUrl'));
+        return view('admin.employees.edit', compact('employee', $employee, 'prevUrl', 'companies'));
     }
 
 

@@ -41,13 +41,20 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="company_id" class="form-label">Company</label>
+                <select class="form-select" name="company_id" id="company_id">
+                    @foreach($companies as $company)
+                        <option value="{{ $company->id }}" {{ $company->id === $employee->company_id ? 'selected' : '' }}>{{ $company->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="photo" class="form-label">Photo</label>
                 <input type="file" class="form-control" id="photo" name="photo" placeholder="Photo">
                 @error('photo')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
             </div>
-
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Update</button>
 {{--                <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>--}}

@@ -28,6 +28,7 @@ class StoreEmployeeRequest extends FormRequest
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'photo' => 'image|mimes:jpeg,png|max:1024',
+            'company_id' => 'required|integer',
         ];
     }
 }
