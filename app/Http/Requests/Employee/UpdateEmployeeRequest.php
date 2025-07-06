@@ -27,7 +27,7 @@ class UpdateEmployeeRequest extends FormRequest
             'email' => 'required|email|unique:employees,email,' . $this->route('employee')->id,
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'photo' => '',
+            'photo' => 'image|mimes:jpeg,png,jpg|max:1024',
         ];
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class EmployeeController extends Controller
@@ -33,6 +35,11 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         $data = $request->validated();
+
+        if (isset($data['photo'])) {
+            $data['photo'] = Storage::disk('public')->put('/images', $data['photo']);;
+        }
+
         Employee::create($data);
 
         return redirect()->route('admin.employees.index');
@@ -58,6 +65,15 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $data = $request->validated();
+
+        if (isset($data['photo'])) {
+            if (Storage::disk('public')->exists($employee->photo)) {
+                Storage::disk('public')->delete($employee->photo);
+            }
+
+            $data['photo'] = Storage::disk('public')->put('/images', $data['photo']);
+        }
+
         $employee->update($data);
 
         return redirect()->route('admin.employees.index');

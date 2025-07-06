@@ -3,7 +3,7 @@
 @section('content')
     <h1>Create employee</h1>
     <div class="row">
-        <form action="{{ route('admin.employees.store') }}" method="post">
+        <form action="{{ route('admin.employees.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -28,7 +28,7 @@
             </div>
             <div class="mb-3">
                 <label for="photo" class="form-label">Photo</label>
-                <input type="text" class="form-control" id="photo" name="photo" placeholder="photo"  value="{{ old('photo') }}">
+                <input type="file" class="form-control" id="photo" name="photo" placeholder="Photo">
                 @error('photo')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror

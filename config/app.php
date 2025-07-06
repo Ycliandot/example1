@@ -239,7 +239,7 @@ return [
     ],
     'admin' => [
         'pagination' => [
-            'employeesPerPage' => 5,
+            'employeesPerPage' => 10,
         ]
     ],
 ];
