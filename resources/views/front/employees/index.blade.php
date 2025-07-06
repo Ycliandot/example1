@@ -2,10 +2,6 @@
 
 @section('content')
     <h3>Employees</h3>
-{{--    <div>--}}
-{{--        <a href="{{ route('post.create') }}" class="btn btn-primary">Add post</a>--}}
-{{--        <a href="{{ route('post.create') }}" class="btn btn-primary">Create category</a>--}}
-{{--    </div>--}}
     <table class="table">
         <thead>
         <tr>
