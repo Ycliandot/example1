@@ -240,6 +240,7 @@ return [
     'admin' => [
         'pagination' => [
             'employeesPerPage' => 10,
+            'companiesPerPage' => 10,
         ]
     ],
 ];
