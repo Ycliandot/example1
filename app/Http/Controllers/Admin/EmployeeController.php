@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Models\Employee;
-use http\Env\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
@@ -66,18 +64,7 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $data = $request->validated();
-
-        if (isset($data['photo'])) {
-            $this->_deletePhoto($employee->photo);
-            $data['photo'] = Storage::disk('public')->put('/images', $data['photo']);
-        }
-
-        if (!empty($request->post('delete_photo'))) {
-            $this->_deletePhoto($employee->photo);
-            $data['photo'] = '';
-        }
-
-        $employee->update($data);
+        $this->service->update($data, $employee);
 
         return redirect()->route('admin.employees.index');
     }

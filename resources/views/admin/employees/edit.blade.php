@@ -17,7 +17,7 @@
                     </div>
                 </div>
             @else
-                <div class="row">Empty employee photo</div>
+                <div class="row">No photo</div>
             @endif
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -50,7 +50,8 @@
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>
+{{--                <a href="{{ $prevUrl }}" class="btn btn-primary">Back</a>--}}
+                <a href="{{ route('admin.employees.index') }}" class="btn btn-primary">Back</a>
             </div>
         </form>
     </div
