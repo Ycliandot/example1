@@ -16,6 +16,7 @@
     </head>
     <body>
         <div class="container">
+            <header class="row bg-dark text-lg-center text-bg-success"><h4>Frontend</h4></header>
             @yield('content')
         </div>
     </body>
