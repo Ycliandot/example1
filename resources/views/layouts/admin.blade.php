@@ -16,7 +16,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="row bg-dark text-lg-center text-bg-success"><h4>Dashboard</h4></div>
+            <header class="row bg-dark text-lg-center text-bg-success"><h4>Dashboard</h4></header>
             <div class="col-sm-6">
                 <div class="float-end">
                     <ul class="navbar-nav ms-auto">
