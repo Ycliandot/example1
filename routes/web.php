@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Front'], function() {
    Route::get('/', 'EmployeeController@index')->name('employee.index');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
    Route::get('/', 'EmployeeController@index')->name('admin.employees.index');
    Route::get('/employees/create', 'EmployeeController@create')->name('admin.employees.create');
    Route::post('/employees', 'EmployeeController@store')->name('admin.employees.store');
@@ -36,3 +36,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
        Route::delete('/companies/{company}', 'DestroyController')->name('admin.company.destroy');
    });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
