@@ -18,7 +18,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return EmployeeResource::collection(Employee::all());
+        return EmployeeResource::collection(Employee::with('company')->paginate());
     }
 
     /**
@@ -52,7 +52,9 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        return new EmployeeResource($employee->update($request->all()));
+        if (new EmployeeResource($employee->update($request->all()))) {
+            return $employee->refresh();
+        }
     }
 
     /**
