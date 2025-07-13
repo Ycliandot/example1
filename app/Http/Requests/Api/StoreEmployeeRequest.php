@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateEmployeeRequest extends FormRequest
+class StoreEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:employees,email,' . $this->route('employee')->id,
+            'email' => 'required|email|unique:employees,email',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'photo' => 'image|mimes:jpeg,png,jpg|max:1024',
-            'delete_photo' => 'nullable',
+            'photo' => 'image|mimes:jpeg,png|max:1024|nullable',
             'company_id' => 'required|integer',
         ];
     }

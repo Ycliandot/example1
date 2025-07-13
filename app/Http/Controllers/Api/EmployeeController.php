@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreEmployeeRequest;
-use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Controllers\Api\Controller as BaseController;
+use App\Http\Requests\Api\StoreEmployeeRequest;
+use App\Http\Requests\Api\UpdateEmployeeRequest;
 use App\Http\Resources\Api\EmployeeResource;
 use App\Models\Employee;
-use Symfony\Component\HttpFoundation\Response as ResponseCode;
 
-class EmployeeController extends Controller
+class EmployeeController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreEmployeeRequest  $request
+     * @param  \App\Http\Requests\Api\StoreEmployeeRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreEmployeeRequest $request)
@@ -46,7 +45,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateEmployeeRequest  $request
+     * @param  \App\Http\Requests\Api\UpdateEmployeeRequest  $request
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */

@@ -19,10 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::apiResource('employees', Api\EmployeeController::class);
+Route::prefix('v1')->middleware(['throttle:api'])->group(function () {
+    Route::get('register', [Api\AuthController::class, 'register']);
+    Route::get('login', [Api\AuthController::class, 'login']);
 });
 
-//Route::prefix('v1')->group(function() {
-//    Route::apiResource('employees', EmployeeController::class);
-//});
+Route::group(['prefix' => 'v1', 'middleware' => ['auth:sanctum', 'throttle:api']], function() {
+    Route::apiResource('employees', Api\EmployeeController::class);
+    Route::get('logout', [Api\AuthController::class, 'logout']);
+});
